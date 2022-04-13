@@ -8,9 +8,7 @@ services:
     image: spark-cluster:0.01
     restart: always
     ports:
-      - 8081:8080
-      - 18080:18080 # 스파크 웹 UI (스파크 마스터)
-      - 14040:4040 # 애플리케이션 웹 UI (앱 실행시)
+      - 18080:8080 # 스파크 웹 UI
     stdin_open: true
     tty: true
     environment:

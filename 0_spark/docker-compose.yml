@@ -12,7 +12,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      - SparkMode=master
+      - SparkMode=masterrr
 
   # spark-slave-1:
   #   hostname: spark-slave-1

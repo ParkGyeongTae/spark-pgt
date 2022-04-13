@@ -28,6 +28,7 @@ RUN wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tg
 
 # python 3.8.0
 RUN apt-get install python3.8 -y && \
+    apt-get install python3-pip -y && \
     ln -s /usr/bin/python3.8 /usr/bin/python3 && \
     ln -s /usr/bin/python3.8 /usr/bin/python
 
@@ -41,7 +42,9 @@ RUN mkdir /root/.pip && \
     echo 'timeout = 10'; \
     echo '[list]'; \
     echo 'format = columns'; \
-    } > /root/.pip/pip.conf
+    } > /root/.pip/pip.conf && \
+    pip3 install --upgrade pip
+    
 
 # 환경설정
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64

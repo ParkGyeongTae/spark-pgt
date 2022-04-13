@@ -24,6 +24,8 @@ services:
     restart: always
     stdin_open: true
     tty: true
+    ports:
+      - 8081:8081 # 스파크 워커 웹 UI
     environment:
       - SPARK_MODE=slave
       - SPARK_MASTER_HOST=spark-master
@@ -31,5 +33,7 @@ services:
       - SPARK_MASTER_WEBUI_PORT=18080
       - SPARK_WORKER_CORES=4
       - SPARK_WORKER_MEMORY=4g
+      - SPARK_WORKER_WEBUI_PORT=8081
+      - SPARK_WORKER_PORT=18081
     depends_on:
       - spark-master

@@ -1,0 +1,18 @@
+version: '2.1'
+
+services:
+
+  spark-master:
+    hostname: spark-master
+    container_name: spark-master
+    image: spark-cluster:0.01
+    restart: always
+    ports:
+      - 18080:18080 # 스파크 웹 UI
+    stdin_open: true
+    tty: true
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080

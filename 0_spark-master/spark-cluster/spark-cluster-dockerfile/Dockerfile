@@ -57,4 +57,4 @@ RUN rm -rf /home/spark/conf/spark-env.sh.template && \
 # 컨테이너 실행시 spark 자동실행
 COPY ./spark-cluster/spark-cluster-entrypoint/entrypoint-spark.sh /usr/local/bin/
 
-# ENTRYPOINT ["entrypoint-spark.sh"]
+ENTRYPOINT ["entrypoint-spark.sh"]

@@ -11,7 +11,7 @@ sleep 1
 
 # 스파크 슬레이브 실행
 if [ ${SPARK_MODE} == "slave" ]; then
-    bash /home/spark/sbin/start-slave.sh spark://spark-master:17077 -c ${SparkSlaveCore} -m ${SparkSlaveMemory}
+    bash /home/spark/sbin/start-slave.sh spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT} -c ${SPARK_WORKER_CORES} -m ${SPARK_WORKER_MEMORY}
 fi
 
 sleep 1

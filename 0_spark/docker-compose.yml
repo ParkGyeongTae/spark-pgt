@@ -8,11 +8,14 @@ services:
     image: spark-cluster:0.01
     restart: always
     ports:
-      - 18080:8080 # 스파크 웹 UI
+      - 18080:18080 # 스파크 웹 UI
     stdin_open: true
     tty: true
     environment:
-      - SparkMode=masterrrrr
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080
 
   # spark-slave-1:
   #   hostname: spark-slave-1

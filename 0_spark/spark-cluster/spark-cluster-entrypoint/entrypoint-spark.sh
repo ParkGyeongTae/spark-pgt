@@ -14,11 +14,6 @@ if [ ${SparkMode} == "slave" ]; then
     bash /home/spark/sbin/start-slave.sh spark://spark-master:17077 -c ${SparkSlaveCore} -m ${SparkSlaveMemory}
 fi
 
-sleep 5
-
-# 제플린 실행
-if [ ${SparkMode} == "master" ]; then
-    bash /home/zeppelin/bin/zeppelin-daemon.sh start
-fi
+sleep 1
 
 bash

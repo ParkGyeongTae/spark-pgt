@@ -29,6 +29,7 @@ RUN wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tg
 # python 3.8.0
 RUN apt-get install python3.8 -y && \
     apt-get install python3-pip -y && \
+    rm -rf /usr/bin/python3 && \
     ln -s /usr/bin/python3.8 /usr/bin/python3 && \
     ln -s /usr/bin/python3.8 /usr/bin/python
 

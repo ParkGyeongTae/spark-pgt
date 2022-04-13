@@ -7,6 +7,7 @@
 1. (default) ./spark/bin/spark-shell --master spark://spark-master:17077 --name spark-shell-pgt
 2. (default) ./spark/bin/spark-shell --master spark://spark-master:17077 --name spark-shell-pgt --executor-cores 4 --executor-memory 1g
 3. (2c, 1g) ./spark/bin/spark-shell --master spark://spark-master:17077 --name spark-shell-pgt --executor-cores 2 --executor-memory 1g
+4. (1c, 1g) ./spark/bin/spark-shell --master spark://spark-master:17077 --name spark-shell-pgt --executor-cores 1 --executor-memory 1g --total-executor-cores 2
 
 ### python (pyspark)
 

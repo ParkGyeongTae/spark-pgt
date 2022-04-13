@@ -37,3 +37,24 @@ services:
       - SPARK_WORKER_PORT=18081
     depends_on:
       - spark-master
+
+  spark-slave-2:
+    hostname: spark-slave-2
+    container_name: spark-slave-2
+    image: spark-cluster:0.02
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 8082:8082 # 스파크 워커 웹 UI
+    environment:
+      - SPARK_MODE=slave
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=4g
+      - SPARK_WORKER_WEBUI_PORT=8082
+      - SPARK_WORKER_PORT=18081
+    depends_on:
+      - spark-master

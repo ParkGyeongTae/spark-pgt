@@ -1,0 +1,62 @@
+version: '2.1'
+
+services:
+
+  spark-master:
+    hostname: spark-master
+    container_name: spark-master
+    image: spark-cluster:0.01
+    restart: always
+    ports:
+      - 8081:8080
+      - 18080:18080 # 스파크 웹 UI (스파크 마스터)
+      - 14040:4040 # 애플리케이션 웹 UI (앱 실행시)
+    stdin_open: true
+    tty: true
+    environment:
+      - SparkMode=master
+
+  # spark-slave-1:
+  #   hostname: spark-slave-1
+  #   container_name: spark-slave-1
+  #   image: spark-cluster:0.01
+  #   restart: always
+  #   mem_limit: "4g"
+  #   stdin_open: true
+  #   tty: true
+  #   environment:
+  #     - SparkMode=slave
+  #     - SparkSlaveCore=4
+  #     - SparkSlaveMemory=4g
+  #   depends_on:
+  #     - spark-master
+
+  # spark-slave-2:
+  #   hostname: spark-slave-2
+  #   container_name: spark-slave-2
+  #   image: spark-cluster:0.01
+  #   restart: always
+  #   mem_limit: "4g"
+  #   stdin_open: true
+  #   tty: true
+  #   environment:
+  #     - SparkMode=slave
+  #     - SparkSlaveCore=2
+  #     - SparkSlaveMemory=4g
+  #   depends_on:
+  #     - spark-master
+
+  # spark-slave-3:
+  #   hostname: spark-slave-3
+  #   container_name: spark-slave-3
+  #   image: spark-cluster:0.01
+  #   restart: always
+  #   mem_limit: "4g"
+  #   stdin_open: true
+  #   tty: true
+  #   environment:
+  #     - SparkMode=slave
+  #     - SparkSlaveCore=4
+  #     - SparkSlaveMemory=2g
+  #   depends_on:
+  #     - spark-master

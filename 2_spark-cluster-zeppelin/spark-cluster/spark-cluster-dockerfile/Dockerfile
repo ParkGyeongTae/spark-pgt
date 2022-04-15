@@ -74,6 +74,11 @@ RUN rm -rf /home/spark/conf/spark-env.sh.template && \
     rm -rf /home/spark/conf/log4j.properties.template && \
     rm -rf /home/spark/bin/*.cmd
 
+# zeppelin 설정파일 수정
+COPY ./zeppelin/zeppelin-conf/zeppelin-env.sh /home/zeppelin/conf/zeppelin-env.sh
+
+RUN rm -rf /home/zeppelin/conf/zeppelin-env.sh.template
+
 # 컨테이너 실행시 spark 자동실행
 COPY ./spark-cluster/spark-cluster-entrypoint/entrypoint-spark.sh /usr/local/bin/
 

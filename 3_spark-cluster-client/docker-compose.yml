@@ -1,0 +1,147 @@
+version: '2.1'
+
+services:
+
+  spark-master:
+    hostname: spark-master
+    container_name: spark-master
+    image: spark-cluster:0.04
+    restart: always
+    ports:
+      - 18080:18080 # 스파크 웹 UI
+    stdin_open: true
+    tty: true
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080
+
+  spark-slave-1:
+    hostname: spark-slave-1
+    container_name: spark-slave-1
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 8081:8081 # 스파크 워커 웹 UI
+    environment:
+      - SPARK_MODE=slave
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=4g
+      - SPARK_WORKER_WEBUI_PORT=8081
+      - SPARK_WORKER_PORT=18081
+    depends_on:
+      - spark-master
+
+  spark-slave-2:
+    hostname: spark-slave-2
+    container_name: spark-slave-2
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 8082:8082 # 스파크 워커 웹 UI
+    environment:
+      - SPARK_MODE=slave
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=4g
+      - SPARK_WORKER_WEBUI_PORT=8082
+      - SPARK_WORKER_PORT=18082
+    depends_on:
+      - spark-master
+
+  spark-slave-3:
+    hostname: spark-slave-3
+    container_name: spark-slave-3
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 8083:8083 # 스파크 워커 웹 UI
+    environment:
+      - SPARK_MODE=slave
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=17077
+      - SPARK_MASTER_WEBUI_PORT=18080
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=4g
+      - SPARK_WORKER_WEBUI_PORT=8083
+      - SPARK_WORKER_PORT=18083
+    depends_on:
+      - spark-master
+
+  zeppelin:
+    hostname: zeppelin
+    container_name: zeppelin
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 9999:9999
+      - 14040:4040
+    environment:
+      - SPARK_MODE=zeppelin
+      - SPARK_MASTER=spark://spark-master:17077
+      - ZEPPELIN_PORT=9999
+      - SPARK_APP_NAME=MyFirstZeppelin
+      - TOTAL_EXECUTOR_CORES=4
+    volumes:
+      - type: bind
+        source: ./zeppelin/zeppelin-notebook/
+        target: /home/zeppelin/notebook/
+        read_only: false
+    depends_on:
+      - spark-master
+
+  spark-client-1:
+    hostname: spark-client-1
+    container_name: spark-client-1
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 4041:4040
+    environment:
+      - SPARK_MODE=client
+    depends_on:
+      - spark-master
+
+  spark-client-2:
+    hostname: spark-client-2
+    container_name: spark-client-2
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 4042:4040
+    environment:
+      - SPARK_MODE=client
+    depends_on:
+      - spark-master
+
+  spark-client-3:
+    hostname: spark-client-3
+    container_name: spark-client-3
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 4043:4040
+    environment:
+      - SPARK_MODE=client
+    depends_on:
+      - spark-master

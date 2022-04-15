@@ -96,6 +96,11 @@ services:
       - ZEPPELIN_PORT=9999
       - SPARK_APP_NAME=MyFirstZeppelin
       - TOTAL_EXECUTOR_CORES=4
+    volumes:
+      - type: bind
+        source: ./zeppelin/zeppelin-notebook/
+        target: /home/zeppelin/notebook/
+        read_only: false
     depends_on:
       - spark-master
 

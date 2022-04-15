@@ -93,10 +93,9 @@ services:
       - SPARK_MODE=zeppelin
       - SPARK_MASTER=spark://spark-master:17077
       - ZEPPELIN_PORT=9999
-      - SPARK_HOME=/home/spark
       - SPARK_APP_NAME=MyFirstZeppelin
-      - TOTAL_EXECUTOR_CORES=6
+      - TOTAL_EXECUTOR_CORES=4
       - EXECUTOR_CORES=2
-      - EXECUTOR_MEMORY=1g
+      - EXECUTOR_MEMORY=2G
     depends_on:
       - spark-master

@@ -77,7 +77,8 @@ RUN rm -rf /home/spark/conf/spark-env.sh.template && \
 # zeppelin 설정파일 수정
 COPY ./zeppelin/zeppelin-conf/zeppelin-env.sh /home/zeppelin/conf/zeppelin-env.sh
 
-RUN rm -rf /home/zeppelin/conf/zeppelin-env.sh.template
+RUN rm -rf /home/zeppelin/conf/zeppelin-env.sh.template && \
+    rm -rf /home/zeppelin/bin/*.cmd
 
 # 컨테이너 실행시 spark 자동실행
 COPY ./spark-cluster/spark-cluster-entrypoint/entrypoint-spark.sh /usr/local/bin/

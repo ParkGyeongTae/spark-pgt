@@ -91,12 +91,5 @@ services:
       - 9999:9999
     environment:
       - SPARK_MODE=zeppelin
-      - SPARK_MASTER_HOST=spark-master
-      - SPARK_MASTER_PORT=17077
-      - SPARK_MASTER_WEBUI_PORT=18080
-      - SPARK_WORKER_CORES=4
-      - SPARK_WORKER_MEMORY=4g
-      - SPARK_WORKER_WEBUI_PORT=8083
-      - SPARK_WORKER_PORT=18083
     depends_on:
       - spark-master

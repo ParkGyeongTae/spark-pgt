@@ -18,9 +18,9 @@
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 # export USE_HADOOP=                            # Whether include hadoop jars into zeppelin server process. (true or false)
-export SPARK_MASTER=spark://spark-master:17077  # Spark master url. eg. spark://master_addr:7077. Leave empty if you want to use local mode.
-# export ZEPPELIN_ADDR                          # Bind address (default 127.0.0.1)
-export ZEPPELIN_PORT=9999                       # port number to listen (default 8080)
+export SPARK_MASTER=${SPARK_MASTER}             # Spark master url. eg. spark://master_addr:7077. Leave empty if you want to use local mode.
+export ZEPPELIN_ADDR=0.0.0.0                    # Bind address (default 127.0.0.1)
+export ZEPPELIN_PORT=${ZEPPELIN_PORT}           # port number to listen (default 8080)
 # export ZEPPELIN_LOCAL_IP                      # Zeppelin's thrift server ip address, if not specified, one random IP address will be choosen.
 # export ZEPPELIN_JAVA_OPTS                     # Additional jvm options. for example, export ZEPPELIN_JAVA_OPTS="-Dspark.executor.memory=8g -Dspark.cores.max=16"
 # export ZEPPELIN_MEM                           # Zeppelin jvm mem options Default -Xms1024m -Xmx1024m -XX:MaxMetaspaceSize=512m
@@ -76,8 +76,9 @@ export ZEPPELIN_PORT=9999                       # port number to listen (default
 ## Use provided spark installation ##
 ## defining SPARK_HOME makes Zeppelin run spark interpreter process using spark-submit
 ##
-# export SPARK_HOME                             # (required) When it is defined, load it instead of Zeppelin embedded Spark libraries
-# export SPARK_SUBMIT_OPTIONS                   # (optional) extra options to pass to spark submit. eg) "--driver-memory 512M --executor-memory 1G".
+export SPARK_HOME=${SPARK_HOME}                 # (required) When it is defined, load it instead of Zeppelin embedded Spark libraries
+export SPARK_SUBMIT_OPTIONS="--total-executor-cores ${TOTAL_EXECUTOR_CORES} --executor-cores ${EXECUTOR_CORES} --executor-memory ${EXECUTOR_MEMORY} --name ${SPARK_APP_NAME}"
+# (optional) extra options to pass to spark submit. eg) "--driver-memory 512M --executor-memory 1G".
 # export SPARK_APP_NAME                         # (optional) The name of spark application.
 # export SPARK_CONF_DIR                         # (optional) In the zeppelin interpreter on docker mode, Need to set the local spark conf folder path
 

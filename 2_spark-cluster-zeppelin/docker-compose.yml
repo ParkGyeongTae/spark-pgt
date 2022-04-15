@@ -98,3 +98,17 @@ services:
       - TOTAL_EXECUTOR_CORES=4
     depends_on:
       - spark-master
+
+  spark-client-1:
+    hostname: spark-client-1
+    container_name: spark-client-1
+    image: spark-cluster:0.03
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 4040:4040
+    environment:
+      - SPARK_MODE=client
+    depends_on:
+      - spark-master

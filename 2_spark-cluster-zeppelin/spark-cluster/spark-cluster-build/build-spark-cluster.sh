@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE_NAME=spark-cluster
-IMAGE_TAG=0.02
+IMAGE_TAG=0.03
 
 IMAGE_NAME_TAG=$IMAGE_NAME:$IMAGE_TAG
 

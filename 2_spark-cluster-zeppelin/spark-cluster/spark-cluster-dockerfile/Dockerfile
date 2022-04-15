@@ -79,10 +79,13 @@ RUN rm -rf /home/spark/conf/spark-env.sh.template && \
 RUN rm -rf /home/zeppelin/conf/zeppelin-env.sh.template && \
     rm -rf /home/zeppelin/conf/zeppelin-env.cmd.template && \
     rm -rf /home/zeppelin/conf/interpreter.json && \
-    rm -rf /home/zeppelin/bin/*.cmd
+    rm -rf /home/zeppelin/bin/*.cmd && \
+    rm -rf /home/zeppelin/notebook && \
+    mkdir /home/zeppelin/notebook
 
 COPY ./zeppelin/zeppelin-conf/zeppelin-env.sh /home/zeppelin/conf/zeppelin-env.sh
 COPY ./zeppelin/zeppelin-conf/interpreter.json /home/zeppelin/conf/interpreter.json
+COPY ./zeppelin/zeppelin-notebook /home/zeppelin/notebook
 
 # 컨테이너 실행시 spark 자동실행
 COPY ./spark-cluster/spark-cluster-entrypoint/entrypoint-spark.sh /usr/local/bin/

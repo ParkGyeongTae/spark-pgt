@@ -115,6 +115,11 @@ services:
       - 4041:4040
     environment:
       - SPARK_MODE=client
+    volumes:
+      - type: bind
+        source: ./spark-cluster/spark-cluster-dev/
+        target: /home/spark/dev/
+        read_only: false
     depends_on:
       - spark-master
 
@@ -129,6 +134,11 @@ services:
       - 4042:4040
     environment:
       - SPARK_MODE=client
+    volumes:
+      - type: bind
+        source: ./spark-cluster/spark-cluster-dev/
+        target: /home/spark/dev/
+        read_only: false
     depends_on:
       - spark-master
 
@@ -143,5 +153,10 @@ services:
       - 4043:4040
     environment:
       - SPARK_MODE=client
+    volumes:
+      - type: bind
+        source: ./spark-cluster/spark-cluster-dev/
+        target: /home/spark/dev/
+        read_only: false
     depends_on:
       - spark-master

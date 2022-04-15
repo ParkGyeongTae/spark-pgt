@@ -68,12 +68,16 @@ ENV ZEPPELIN_HOME /home/zeppelin
 ENV PATH $PATH:$JAVA_HOME/bin:$SPARK_HOME/bin:$ZEPPELIN_HOME/bin
 
 # spark 설정파일 수정
-COPY ./spark-cluster/spark-cluster-conf/spark-env.sh /home/spark/conf/spark-env.sh
-COPY ./spark-cluster/spark-cluster-conf/log4j.properties /home/spark/conf/log4j.properties
-
 RUN rm -rf /home/spark/conf/spark-env.sh.template && \
     rm -rf /home/spark/conf/log4j.properties.template && \
-    rm -rf /home/spark/bin/*.cmd
+    rm -rf /home/spark/bin/*.cmd && \
+    mkdir /home/spark/dev
+
+COPY ./spark-cluster/spark-cluster-conf/spark-env.sh /home/spark/conf/spark-env.sh
+COPY ./spark-cluster/spark-cluster-conf/log4j.properties /home/spark/conf/log4j.properties
+COPY ./spark-cluster/spark-cluster-dev /home/spark/dev
+
+
 
 # zeppelin 설정파일 수정
 RUN rm -rf /home/zeppelin/conf/zeppelin-env.sh.template && \

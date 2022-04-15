@@ -89,6 +89,7 @@ services:
     tty: true
     ports:
       - 9999:9999
+      - 4040:4040
     environment:
       - SPARK_MODE=zeppelin
       - SPARK_MASTER=spark://spark-master:17077

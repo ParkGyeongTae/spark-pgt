@@ -33,6 +33,20 @@ RUN apt-get install python3.8 -y && \
     ln -s /usr/bin/python3.8 /usr/bin/python3 && \
     ln -s /usr/bin/python3.8 /usr/bin/python
 
+# zeppelin-0.10.1
+RUN wget https://dlcdn.apache.org/zeppelin/zeppelin-0.10.1/zeppelin-0.10.1-bin-all.tgz && \
+    tar -zxf zeppelin-0.10.1-bin-all.tgz && \
+    mv zeppelin-0.10.1-bin-all zeppelin && \
+    rm -rf zeppelin-0.10.1-bin-all.tgz
+
+WORKDIR /home/zeppelin/interpreter/jdbc
+
+RUN wget https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-8.0.24.tar.gz && \
+    tar -zxf mysql-connector-java-8.0.24.tar.gz && \
+    rm -rf mysql-connector-java-8.0.24.tar.gz
+
+WORKDIR /home
+
 # pip3 설정
 RUN mkdir /root/.pip && \
     set -x \

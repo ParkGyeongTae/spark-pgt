@@ -16,4 +16,11 @@ fi
 
 sleep 1
 
+# 제플린 실행
+if [ ${SPARK_MODE} == "zeppelin" ]; then
+    bash /home/zeppelin/bin/zeppelin-daemon.sh start
+fi
+
+sleep 1
+
 bash

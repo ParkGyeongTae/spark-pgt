@@ -55,7 +55,7 @@ services:
       - SPARK_WORKER_CORES=4
       - SPARK_WORKER_MEMORY=4g
       - SPARK_WORKER_WEBUI_PORT=8082
-      - SPARK_WORKER_PORT=18081
+      - SPARK_WORKER_PORT=18082
     depends_on:
       - spark-master
 
@@ -76,6 +76,6 @@ services:
       - SPARK_WORKER_CORES=4
       - SPARK_WORKER_MEMORY=4g
       - SPARK_WORKER_WEBUI_PORT=8083
-      - SPARK_WORKER_PORT=18081
+      - SPARK_WORKER_PORT=18083
     depends_on:
       - spark-master

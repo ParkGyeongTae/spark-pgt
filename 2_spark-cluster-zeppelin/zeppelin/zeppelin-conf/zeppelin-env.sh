@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=${JAVA_HOME}
 # export USE_HADOOP=                            # Whether include hadoop jars into zeppelin server process. (true or false)
 export SPARK_MASTER=${SPARK_MASTER}             # Spark master url. eg. spark://master_addr:7077. Leave empty if you want to use local mode.
 export ZEPPELIN_ADDR=0.0.0.0                    # Bind address (default 127.0.0.1)

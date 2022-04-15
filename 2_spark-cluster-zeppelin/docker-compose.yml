@@ -95,7 +95,5 @@ services:
       - ZEPPELIN_PORT=9999
       - SPARK_APP_NAME=MyFirstZeppelin
       - TOTAL_EXECUTOR_CORES=4
-      - EXECUTOR_CORES=2
-      - EXECUTOR_MEMORY=2G
     depends_on:
       - spark-master

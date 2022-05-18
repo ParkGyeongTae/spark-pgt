@@ -131,6 +131,8 @@ services:
     tty: true
     ports:
       - 4040:4040
+      - 4041:4041
+      - 4042:4042
     environment:
       - SPARK_MODE=client
     volumes:

@@ -116,7 +116,7 @@ services:
       - SPARK_SUBMIT_OPTIONS="--total-executor-cores 4 --name MyFirstZeppelin"
     volumes:
       - type: bind
-        source: ./zeppelin/zeppelin-notebook/
+        source: ./zeppelin-notebook/
         target: /home/zeppelin/notebook/
         read_only: false
     depends_on:

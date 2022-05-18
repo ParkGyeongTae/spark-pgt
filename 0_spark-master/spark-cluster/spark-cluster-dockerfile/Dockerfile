@@ -50,10 +50,10 @@ ENV SPARK_HOME /home/spark
 ENV PATH $PATH:$JAVA_HOME/bin:$SPARK_HOME/bin
 
 # spark 설정파일 수정
-COPY ./spark-cluster/spark-cluster-conf/spark-env.sh /home/spark/conf/spark-env.sh
+# COPY ./spark-cluster/spark-cluster-conf/spark-env.sh /home/spark/conf/spark-env.sh
 
-RUN rm -rf /home/spark/conf/spark-env.sh.template && \
-    rm -rf /home/spark/bin/*.cmd
+# RUN rm -rf /home/spark/conf/spark-env.sh.template && \
+#     rm -rf /home/spark/bin/*.cmd
 
 # 컨테이너 실행시 spark 자동실행
 COPY ./spark-cluster/spark-cluster-entrypoint/entrypoint-spark.sh /usr/local/bin/

@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN sed -i 's@archive.ubuntu.com@kr.archive.ubuntu.com@g' /etc/apt/sources.list
 
 # 자주 사용하는 패키지 설치
-RUN apt-get update && \
+RUN apt-get clean && \
+    apt-get update && \
     apt-get install net-tools -y && \
     apt-get install iputils-ping -y && \
     apt-get install vim -y && \

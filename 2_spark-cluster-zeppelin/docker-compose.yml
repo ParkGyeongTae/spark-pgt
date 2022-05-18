@@ -133,5 +133,10 @@ services:
       - 4040:4040
     environment:
       - SPARK_MODE=client
+    volumes:
+      - type: bind
+        source: ./dev/
+        target: /home/spark/dev/
+        read_only: false
     depends_on:
       - spark-master

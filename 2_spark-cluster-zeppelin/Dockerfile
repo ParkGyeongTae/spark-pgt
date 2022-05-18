@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN sed -i 's@archive.ubuntu.com@kr.archive.ubuntu.com@g' /etc/apt/sources.list
 
 # 자주 사용하는 패키지 설치
-RUN apt-get update && \
+RUN apt-get clean && \
+    apt-get update && \
     apt-get install net-tools -y && \
     apt-get install iputils-ping -y && \
     apt-get install vim -y && \
@@ -59,7 +60,6 @@ RUN mkdir /root/.pip && \
     echo 'format = columns'; \
     } > /root/.pip/pip.conf && \
     pip3 install --upgrade pip
-    
 
 # 환경설정
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
@@ -68,26 +68,23 @@ ENV ZEPPELIN_HOME /home/zeppelin
 ENV PATH $PATH:$JAVA_HOME/bin:$SPARK_HOME/bin:$ZEPPELIN_HOME/bin
 
 # spark 설정파일 수정
-COPY ./spark-cluster/spark-cluster-conf/spark-env.sh /home/spark/conf/spark-env.sh
-COPY ./spark-cluster/spark-cluster-conf/log4j.properties /home/spark/conf/log4j.properties
+COPY ./log4j.properties /home/spark/conf/log4j.properties
 
-RUN rm -rf /home/spark/conf/spark-env.sh.template && \
-    rm -rf /home/spark/conf/log4j.properties.template && \
+RUN rm -rf /home/spark/conf/log4j.properties.template && \
     rm -rf /home/spark/bin/*.cmd
 
 # zeppelin 설정파일 수정
-RUN rm -rf /home/zeppelin/conf/zeppelin-env.sh.template && \
-    rm -rf /home/zeppelin/conf/zeppelin-env.cmd.template && \
+RUN rm -rf /home/zeppelin/conf/zeppelin-env.cmd.template && \
     rm -rf /home/zeppelin/conf/interpreter.json && \
     rm -rf /home/zeppelin/bin/*.cmd && \
     rm -rf /home/zeppelin/notebook && \
     mkdir /home/zeppelin/notebook
 
-COPY ./zeppelin/zeppelin-conf/zeppelin-env.sh /home/zeppelin/conf/zeppelin-env.sh
-COPY ./zeppelin/zeppelin-conf/interpreter.json /home/zeppelin/conf/interpreter.json
-COPY ./zeppelin/zeppelin-notebook /home/zeppelin/notebook
+# COPY ./zeppelin/zeppelin-conf/zeppelin-env.sh /home/zeppelin/conf/zeppelin-env.sh
+COPY ./zeppelin-conf/interpreter.json /home/zeppelin/conf/interpreter.json
+# COPY ./zeppelin/zeppelin-notebook /home/zeppelin/notebook
 
 # 컨테이너 실행시 spark 자동실행
-COPY ./spark-cluster/spark-cluster-entrypoint/entrypoint-spark.sh /usr/local/bin/
+COPY ./entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["entrypoint-spark.sh"]
+ENTRYPOINT ["entrypoint.sh"]

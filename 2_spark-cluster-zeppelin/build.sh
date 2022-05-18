@@ -20,4 +20,4 @@ if [[ "$(docker container ls -q --filter "name=${CONTAINER_NAME}" 2> /dev/null)"
     docker rm $(docker container ls -q --filter "name=${CONTAINER_NAME}")
 fi
 
-docker build -f ./spark-cluster/spark-cluster-dockerfile/Dockerfile -t $IMAGE_NAME_TAG .
+docker build -f ./Dockerfile -t $IMAGE_NAME_TAG .

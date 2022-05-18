@@ -16,6 +16,10 @@ services:
       - SPARK_MASTER_HOST=spark-master
       - SPARK_MASTER_PORT=17077
       - SPARK_MASTER_WEBUI_PORT=18080
+      - SPARK_CONF_DIR=/home/spark/conf
+      - SPARK_LOG_DIR=/home/spark/logs
+      - SPARK_LOG_MAX_FILES=5
+      - SPARK_PID_DIR=/tmp
 
   spark-slave-1:
     hostname: spark-slave-1
@@ -35,6 +39,10 @@ services:
       - SPARK_WORKER_MEMORY=4g
       - SPARK_WORKER_WEBUI_PORT=8081
       - SPARK_WORKER_PORT=18081
+      - SPARK_CONF_DIR=/home/spark/conf
+      - SPARK_LOG_DIR=/home/spark/logs
+      - SPARK_LOG_MAX_FILES=5
+      - SPARK_PID_DIR=/tmp
     depends_on:
       - spark-master
 
@@ -56,6 +64,10 @@ services:
       - SPARK_WORKER_MEMORY=4g
       - SPARK_WORKER_WEBUI_PORT=8082
       - SPARK_WORKER_PORT=18082
+      - SPARK_CONF_DIR=/home/spark/conf
+      - SPARK_LOG_DIR=/home/spark/logs
+      - SPARK_LOG_MAX_FILES=5
+      - SPARK_PID_DIR=/tmp
     depends_on:
       - spark-master
 
@@ -77,6 +89,10 @@ services:
       - SPARK_WORKER_MEMORY=4g
       - SPARK_WORKER_WEBUI_PORT=8083
       - SPARK_WORKER_PORT=18083
+      - SPARK_CONF_DIR=/home/spark/conf
+      - SPARK_LOG_DIR=/home/spark/logs
+      - SPARK_LOG_MAX_FILES=5
+      - SPARK_PID_DIR=/tmp
     depends_on:
       - spark-master
 
@@ -94,8 +110,10 @@ services:
       - SPARK_MODE=zeppelin
       - SPARK_MASTER=spark://spark-master:17077
       - ZEPPELIN_PORT=9999
-      - SPARK_APP_NAME=MyFirstZeppelin
-      - TOTAL_EXECUTOR_CORES=4
+      - ZEPPELIN_ADDR=0.0.0.0
+      - ZEPPELIN_LOG_DIR=/home/zeppelin/logs
+      - ZEPPELIN_PID_DIR=/home/zeppelin/run
+      - SPARK_SUBMIT_OPTIONS="--total-executor-cores 4 --name MyFirstZeppelin"
     volumes:
       - type: bind
         source: ./zeppelin/zeppelin-notebook/

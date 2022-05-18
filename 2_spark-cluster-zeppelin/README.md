@@ -1,7 +1,9 @@
 # 실제 코드
 
-1. ./spark/bin/spark-submit --master spark://spark-master:17077 --executor-cores 2 --executor-memory 1g --total-executor-cores 4 ./spark/examples/src/main/python/pi.py 50
-
+1. 포그라운드 실행
+- ./spark/bin/spark-submit --master spark://spark-master:17077 --deploy-mode client --executor-cores 2 --executor-memory 1g --total-executor-cores 4 ./spark/examples/src/main/python/pi.py 50
+2. 백그라운드 실행
+- nohup ./spark/bin/spark-submit --master spark://spark-master:17077 --executor-cores 2 --executor-memory 1g --total-executor-cores 4 ./spark/examples/src/main/python/pi.py 50 &
 
 # 실행 예시
 

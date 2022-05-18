@@ -74,14 +74,14 @@ RUN rm -rf /home/spark/conf/log4j.properties.template && \
     rm -rf /home/spark/bin/*.cmd
 
 # zeppelin 설정파일 수정
-RUN rm -rf /home/zeppelin/conf/zeppelin-env.cmd.template && \
-    rm -rf /home/zeppelin/conf/interpreter.json && \
-    rm -rf /home/zeppelin/bin/*.cmd && \
+    # rm -rf /home/zeppelin/conf/zeppelin-env.cmd.template && \
+    # rm -rf /home/zeppelin/conf/interpreter.json && \
+RUN rm -rf /home/zeppelin/bin/*.cmd && \
     rm -rf /home/zeppelin/notebook && \
     mkdir /home/zeppelin/notebook
 
 # COPY ./zeppelin/zeppelin-conf/zeppelin-env.sh /home/zeppelin/conf/zeppelin-env.sh
-COPY ./zeppelin-conf/interpreter.json /home/zeppelin/conf/interpreter.json
+# COPY ./zeppelin-conf/interpreter.json /home/zeppelin/conf/interpreter.json
 # COPY ./zeppelin/zeppelin-notebook /home/zeppelin/notebook
 
 # 컨테이너 실행시 spark 자동실행

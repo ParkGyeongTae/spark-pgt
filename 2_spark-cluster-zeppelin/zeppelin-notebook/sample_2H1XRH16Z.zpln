@@ -3,7 +3,7 @@
     {
       "text": "sc",
       "user": "anonymous",
-      "dateUpdated": "2022-04-15 10:37:01.016",
+      "dateUpdated": "2022-05-18 06:10:54.955",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -27,7 +27,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m \u003d org.apache.spark.SparkContext@977db27\n"
+            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m \u003d org.apache.spark.SparkContext@489e427a\n"
           }
         ]
       },
@@ -37,8 +37,8 @@
       "jobName": "paragraph_1650019015041_1250732723",
       "id": "paragraph_1650019015041_1250732723",
       "dateCreated": "2022-04-15 10:36:55.041",
-      "dateStarted": "2022-04-15 10:37:01.043",
-      "dateFinished": "2022-04-15 10:37:28.274",
+      "dateStarted": "2022-05-18 06:10:55.000",
+      "dateFinished": "2022-05-18 06:11:23.974",
       "status": "FINISHED"
     },
     {

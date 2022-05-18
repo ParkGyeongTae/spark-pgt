@@ -17,6 +17,6 @@ services:
       - SPARK_MASTER_PORT=17077
       - SPARK_MASTER_WEBUI_PORT=18080
       - SPARK_CONF_DIR=/home/spark/conf
-      - SPARK_LOG_DIR=/home/spark/logssss
+      - SPARK_LOG_DIR=/home/spark/logs
       - SPARK_LOG_MAX_FILES=5
       - SPARK_PID_DIR=/tmp

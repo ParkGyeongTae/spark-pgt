@@ -62,7 +62,7 @@ SPARK_MASTER_WEBUI_PORT=${SPARK_MASTER_WEBUI_PORT}
 
 # Generic options for the daemons used in the standalone deploy mode
 SPARK_CONF_DIR=${SPARK_HOME}/conf # - SPARK_CONF_DIR      Alternate conf dir. (Default: ${SPARK_HOME}/conf)
-SPARK_LOG_DIR=${SPARK_HOME}/logss # - SPARK_LOG_DIR       Where log files are stored.  (Default: ${SPARK_HOME}/logs)
+SPARK_LOG_DIR=${SPARK_HOME}/logs # - SPARK_LOG_DIR       Where log files are stored.  (Default: ${SPARK_HOME}/logs)
 SPARK_LOG_MAX_FILES=5 # - SPARK_LOG_MAX_FILES Max log files of Spark daemons can rotate to. Default is 5.
 SPARK_PID_DIR=/tmp # - SPARK_PID_DIR       Where the pid file is stored. (Default: /tmp)
 # - SPARK_IDENT_STRING  A string representing this instance of spark. (Default: $USER)

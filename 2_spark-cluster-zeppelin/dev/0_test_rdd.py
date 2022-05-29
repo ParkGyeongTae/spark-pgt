@@ -1,3 +1,27 @@
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession\
+        .builder\
+        .appName("0_save_file")\
+        .getOrCreate()
+
+sc = spark.sparkContext
+
+data = sc.parallelize(range(0, 10))
+data_map = data.map(lambda x: x * x)
+
+data_reduce = data.reduce(lambda x, y: x + y)
+data_map_reduce = data_map.reduce(lambda x, y: x + y)
+
+print(f'data            : {data.collect()}')
+print(f'data_map        : {data_map.collect()}')
+print(f'data_reduce     : {data_reduce}')
+print(f'data_map_reduce : {data_map_reduce}')
+
+spark.stop()
+
+'''
 from pyspark.sql import SparkSession
 
 spark = SparkSession\
@@ -20,7 +44,7 @@ pairs = lines.flatMap(lambda x: x.split(" ")).map(lambda word: (word, 1)).groupB
 print(f'pairs : {pairs.collect()}' )
 
 spark.stop()
-
+'''
 
 '''
 from pyspark.sql import SparkSession

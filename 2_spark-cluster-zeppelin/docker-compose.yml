@@ -140,5 +140,9 @@ services:
         source: ./dev/
         target: /home/spark/dev/
         read_only: false
+      - type: bind
+        source: ./result/
+        target: /home/spark/result/
+        read_only: false
     depends_on:
       - spark-master

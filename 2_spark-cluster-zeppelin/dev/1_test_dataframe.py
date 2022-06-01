@@ -69,6 +69,7 @@ spark.stop()
 
 from pyspark.sql import SparkSession
 from pyspark.sql import Row
+from pyspark.sql.functions import max, avg, sum, min
 
 spark = SparkSession\
         .builder\
@@ -84,12 +85,18 @@ data = [Row(name = 'a', age = 12, type = 'A', score = 90, year = 2012),
         Row(name = 'c', age = 15, type = 'C', score = 70, year = 2016),
         Row(name = 'c', age = 33, type = 'F', score = 50, year = 2017)]
 
-spark_df = sc.parallelize(data).toDF()
+spark_df = sc.parallelize(data).sql()
+
+spark_df = spark_df.sql('SELECT * FROM spark_df')
 
 # spark_df = spark_df.select('*')
-# spark_df = spark_df.select('name', 'age')
-# spark_df = spark_df.filter(spark_df.age > 30)
+# spark_df = spark_df.select('name', 'age', 'year')
+# spark_df = spark_df.filter(spark_df.age > 20).filter(spark_df.year > 2016)
+# spark_df = spark_df.groupBy('name').sum('score').select('*')
+# spark_df = spark_df.groupBy('name').agg(sum('age').alias('sum_age'), 
+#                                         sum('score').alias('sum_age'), 
+#                                         sum('year').alias('sum_year')).select('*')
 
-spark_df.show()
+# spark_df.show()
 
 spark.stop()

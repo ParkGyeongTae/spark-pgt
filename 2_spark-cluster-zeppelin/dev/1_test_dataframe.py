@@ -5,7 +5,7 @@ from pyspark.sql import Row
 
 spark = SparkSession\
         .builder\
-        .appName("0_save_file")\
+        .appName("1_test_dataframe")\
         .getOrCreate()
 
 sc = spark.sparkContext
@@ -44,6 +44,7 @@ df.show()
 spark.stop()
 '''
 
+'''
 from pyspark.sql import SparkSession
 import numpy as np
 import pandas as pd
@@ -62,5 +63,33 @@ df_re_pandas = df_spark.select('*').toPandas()
 print(df_pandas.head(5))
 print(df_spark.show(5))
 print(df_re_pandas.head(5))
+
+spark.stop()
+'''
+
+from pyspark.sql import SparkSession
+from pyspark.sql import Row
+
+spark = SparkSession\
+        .builder\
+        .appName("1_test_dataframe")\
+        .getOrCreate()
+
+sc = spark.sparkContext
+
+data = [Row(name = 'a', age = 12, type = 'A', score = 90, year = 2012),
+        Row(name = 'a', age = 15, type = 'B', score = 80, year = 2013),
+        Row(name = 'b', age = 15, type = 'B', score = 80, year = 2014),
+        Row(name = 'b', age = 21, type = 'F', score = 50, year = 2015),
+        Row(name = 'c', age = 15, type = 'C', score = 70, year = 2016),
+        Row(name = 'c', age = 33, type = 'F', score = 50, year = 2017)]
+
+spark_df = sc.parallelize(data).toDF()
+
+# spark_df = spark_df.select('*')
+# spark_df = spark_df.select('name', 'age')
+# spark_df = spark_df.filter(spark_df.age > 30)
+
+spark_df.show()
 
 spark.stop()

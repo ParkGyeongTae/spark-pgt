@@ -122,9 +122,9 @@ services:
     depends_on:
       - spark-master
 
-  spark-client-1:
-    hostname: spark-client-1
-    container_name: spark-client-1
+  spark-client:
+    hostname: spark-client
+    container_name: spark-client
     image: spark-cluster:0.03
     restart: always
     stdin_open: true

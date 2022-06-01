@@ -1,4 +1,37 @@
 
+
+from pyspark.sql import SparkSession
+import time
+
+spark = SparkSession\
+        .builder\
+        .appName("0_save_file")\
+        .getOrCreate()
+
+sc = spark.sparkContext
+
+current = time.time()
+
+print(current)
+
+# line_1 = 'i love you'
+# line_2 = 'you are my friend'
+# line_3 = 'my name is park'
+
+# lines = sc.parallelize([line_1.upper(), 
+#                         line_2.upper(), 
+#                         line_3.upper()])
+
+# lines_map = lines.map(lambda x: x.lower().split(' '))
+# lines_flatmap = lines.flatMap(lambda x: x.lower().split(' '))
+
+# print(f'lines.collect()         : {lines.collect()}')
+# print(f'lines_map.collect()     : {lines_map.collect()}')
+# print(f'lines_flatmap.collect() : {lines_flatmap.collect()}')
+
+spark.stop()
+
+'''
 from pyspark.sql import SparkSession
 
 spark = SparkSession\
@@ -12,17 +45,19 @@ line_1 = 'i love you'
 line_2 = 'you are my friend'
 line_3 = 'my name is park'
 
-lines = sc.parallelize([line_1, line_2, line_3])
+lines = sc.parallelize([line_1.upper(), 
+                        line_2.upper(), 
+                        line_3.upper()])
 
-lines_map = lines.map(lambda x: x.split(' '))
-lines_flatmap = lines.flatMap(lambda x: x.split(' '))
+lines_map = lines.map(lambda x: x.lower().split(' '))
+lines_flatmap = lines.flatMap(lambda x: x.lower().split(' '))
 
 print(f'lines.collect()         : {lines.collect()}')
 print(f'lines_map.collect()     : {lines_map.collect()}')
 print(f'lines_flatmap.collect() : {lines_flatmap.collect()}')
 
 spark.stop()
-
+'''
 
 
 '''

@@ -17,9 +17,11 @@ data = [Row(id = 0, name = 'a', age = 12, type = 'A', score = 90, year = 2012),
 
 spark_df = sc.parallelize(data).toDF()
 
-spark_df.createOrReplaceTempView("my_table")
+# spark_df.createOrReplaceTempView("my_table")
+spark_df.createGlobalTempView("my_table")
 
-spark_sql = spark.sql("SELECT * FROM my_table")
+# spark_sql = spark.sql("SELECT * FROM my_table")
+spark_sql = spark.sql("SELECT * FROM global_temp.my_table")
 
 spark_sql.show()
 

@@ -1,3 +1,44 @@
+from pyspark.sql import SparkSession
+from pyspark.sql import Row
+
+spark = SparkSession.builder \
+                    .appName("1_test_dataframe") \
+                    .master('spark://spark-master:17077') \
+                    .getOrCreate()
+
+sc = spark.sparkContext
+
+data = [Row(id = 0, name = 'a', age = 12, type = 'A', score = 90, year = 2012),
+        Row(id = 1, name = 'a', age = 15, type = 'B', score = 80, year = 2013),
+        Row(id = 2, name = 'b', age = 15, type = 'B', score = 80, year = 2014),
+        Row(id = 3, name = 'b', age = 21, type = 'F', score = 50, year = 2015),
+        Row(id = 4, name = 'c', age = 15, type = 'C', score = 70, year = 2016),
+        Row(id = 5, name = 'c', age = 33, type = 'F', score = 50, year = 2017)]
+
+spark_df = sc.parallelize(data).toDF()
+
+spark_df.createOrReplaceTempView("my_table")
+
+spark_sql = spark.sql("SELECT * FROM my_table")
+
+spark_sql.show()
+
+spark.stop()
+
+# spark_df = spark_df.sql('SELECT * FROM spark_df')
+
+# spark_df = spark_df.select('*')
+# spark_df = spark_df.select('name', 'age', 'year')
+# spark_df = spark_df.filter(spark_df.age > 20).filter(spark_df.year > 2016)
+# spark_df = spark_df.groupBy('name').sum('score').select('*')
+# spark_df = spark_df.groupBy('name').agg(sum('age').alias('sum_age'), 
+#                                         sum('score').alias('sum_age'), 
+#                                         sum('year').alias('sum_year')).select('*')
+
+# spark_df.show()
+
+
+
 
 '''
 from pyspark.sql import SparkSession
@@ -67,14 +108,15 @@ print(df_re_pandas.head(5))
 spark.stop()
 '''
 
+'''
 from pyspark.sql import SparkSession
 from pyspark.sql import Row
 from pyspark.sql.functions import max, avg, sum, min
 
-spark = SparkSession\
-        .builder\
-        .appName("1_test_dataframe")\
-        .getOrCreate()
+spark = SparkSession.builder \
+                    .appName("1_test_dataframe") \
+                    .master('spark://spark-master:17077') \
+                    .getOrCreate()
 
 sc = spark.sparkContext
 
@@ -97,6 +139,7 @@ spark_df = spark_df.sql('SELECT * FROM spark_df')
 #                                         sum('score').alias('sum_age'), 
 #                                         sum('year').alias('sum_year')).select('*')
 
-# spark_df.show()
+spark_df.show()
 
 spark.stop()
+'''

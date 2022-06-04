@@ -1,20 +1,37 @@
-from pyspark.conf import SparkConf
-from pyspark.context import SparkContext
+from pyspark.sql import SparkSession
 
-conf = SparkConf().setAll([('spark.app.name', '2_test_sparkconf'),
-                           ('spark.master', 'spark://spark-master:17077'),
-                           ('spark.driver.cores', '1'),
-                           ('spark.driver.memory','1g'),
-                           ('spark.executor.memory', '1g'),
-                           ('spark.executor.cores', '2'),
-                           ('spark.cores.max', '2')])
+spark = SparkSession.builder \
+                    .appName('3_test_sparksession') \
+                    .master('spark://spark-master:17077') \
+                    .getOrCreate()
 
-sc = SparkContext(conf = conf)
+sc = spark.sparkContext
 
 for setting in sc._conf.getAll():
     print(setting)
 
 sc.stop()
+
+
+
+
+
+
+
+# from pyspark.conf import SparkConf
+# from pyspark.context import SparkContext
+
+# conf = SparkConf().setAll([('spark.app.name', '2_test_sparkconf'),
+#                            ('spark.master', 'spark://spark-master:17077'),
+#                            ('spark.driver.cores', '1'),
+#                            ('spark.driver.memory','1g'),
+#                            ('spark.executor.memory', '1g'),
+#                            ('spark.executor.cores', '2'),
+#                            ('spark.cores.max', '2')])
+
+# sc = SparkContext(conf = conf)
+
+
 
 
 # sc = spark.sparkConf()

@@ -13,7 +13,7 @@ spark = SparkSession.builder \
 sc = spark.sparkContext
 
 data = sc.parallelize(range(0, 10000000))
-print(data.collect())
+# print(data.collect())
 
 
 sc.stop()

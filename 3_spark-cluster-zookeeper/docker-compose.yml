@@ -5,7 +5,7 @@ services:
   spark-master:
     hostname: spark-master
     container_name: spark-master
-    image: spark-cluster:0.03
+    image: spark-cluster:0.04
     restart: always
     ports:
       - 18080:18080 # 스파크 웹 UI
@@ -24,7 +24,7 @@ services:
   spark-slave-1:
     hostname: spark-slave-1
     container_name: spark-slave-1
-    image: spark-cluster:0.03
+    image: spark-cluster:0.04
     restart: always
     stdin_open: true
     tty: true
@@ -49,7 +49,7 @@ services:
   spark-slave-2:
     hostname: spark-slave-2
     container_name: spark-slave-2
-    image: spark-cluster:0.03
+    image: spark-cluster:0.04
     restart: always
     stdin_open: true
     tty: true
@@ -74,7 +74,7 @@ services:
   spark-slave-3:
     hostname: spark-slave-3
     container_name: spark-slave-3
-    image: spark-cluster:0.03
+    image: spark-cluster:0.04
     restart: always
     stdin_open: true
     tty: true
@@ -99,7 +99,7 @@ services:
   zeppelin:
     hostname: zeppelin
     container_name: zeppelin
-    image: spark-cluster:0.03
+    image: spark-cluster:0.04
     restart: always
     stdin_open: true
     tty: true
@@ -125,7 +125,7 @@ services:
   spark-client:
     hostname: spark-client
     container_name: spark-client
-    image: spark-cluster:0.03
+    image: spark-cluster:0.04
     restart: always
     stdin_open: true
     tty: true

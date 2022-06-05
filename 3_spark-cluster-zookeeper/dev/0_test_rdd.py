@@ -12,53 +12,46 @@ spark = SparkSession.builder \
 
 sc = spark.sparkContext
 
-line_1 = 'i love you'
-line_2 = 'you are my friend'
-line_3 = 'my name is park'
+data_1 = list(range(0, 10))
+data_2 = list(range(10, 20))
 
-lines_upper = sc.parallelize([line_1.upper(), 
-                              line_2.upper(), 
-                              line_3.upper()])
+rdd_1 = sc.parallelize(data_1)
+rdd_2 = sc.parallelize(data_2)
 
-lines_lower = sc.parallelize([line_1.lower(), 
-                              line_2.lower(), 
-                              line_3.lower()])
-
-# print(lines_upper.collect())
-# print(lines_lower.collect())
-print()
-print(lines_upper)
+rdd_union = rdd_1.union(rdd_2)
+rdd_map_type = rdd_union.map(lambda x: type(x))
+rdd_map_str = rdd_union.map(lambda x: str(x))
+rdd_map_type_2 = rdd_map_str.map(lambda x: type(x))
 
 print()
-print(lines_lower)
-
+print(rdd_union)
+print(rdd_union.count(), rdd_union.collect())
+print()
+print(rdd_map_type)
+print(rdd_map_type.count(), rdd_map_type.collect())
+print()
+print(rdd_map_str)
+print(rdd_map_str.count(), rdd_map_str.collect())
+print()
+print(rdd_map_type_2)
+print(rdd_map_type_2.count(), rdd_map_type_2.collect())
 print()
 
 sc.stop()
-
-# line_1 = 'i love you'
-# line_2 = 'you are my friend'
-# line_3 = 'my name is park'
-
-# lines = sc.parallelize([line_1.upper(), 
-#                         line_2.upper(), 
-#                         line_3.upper()])
-
-# lines_map = lines.map(lambda x: x.lower().split(' '))
-# lines_flatmap = lines.flatMap(lambda x: x.lower().split(' '))
-
-# print(f'lines.collect()         : {lines.collect()}')
-# print(f'lines_map.collect()     : {lines_map.collect()}')
-# print(f'lines_flatmap.collect() : {lines_flatmap.collect()}')
 
 
 '''
 from pyspark.sql import SparkSession
 
-spark = SparkSession\
-        .builder\
-        .appName("0_save_file")\
-        .getOrCreate()
+spark = SparkSession.builder \
+                    .appName('0_test_rdd') \
+                    .master('spark://spark-master-1:7077,spark-master-2:7077') \
+                    .config('spark.driver.cores', '2') \
+                    .config('spark.driver.memory','2g') \
+                    .config('spark.executor.memory', '2g') \
+                    .config('spark.executor.cores', '2') \
+                    .config('spark.cores.max', '8') \
+                    .getOrCreate()
 
 sc = spark.sparkContext
 
@@ -66,19 +59,31 @@ line_1 = 'i love you'
 line_2 = 'you are my friend'
 line_3 = 'my name is park'
 
-lines = sc.parallelize([line_1.upper(), 
-                        line_2.upper(), 
-                        line_3.upper()])
+lines = sc.parallelize([line_1, line_2, line_3])
+# lines = sc.parallelize([line_1.upper(), line_2.upper(), line_3.upper()])
+# lines = sc.parallelize([line_1.lower(), line_2.lower(), line_3.lower()])
 
-lines_map = lines.map(lambda x: x.lower().split(' '))
-lines_flatmap = lines.flatMap(lambda x: x.lower().split(' '))
+lines_map = lines.map(lambda x: x.split(' '))
+lines_flatmap = lines.flatMap(lambda x: x.split(' '))
+lines_filter = lines_flatmap.filter(lambda x: len(x) > 3)
 
-print(f'lines.collect()         : {lines.collect()}')
-print(f'lines_map.collect()     : {lines_map.collect()}')
-print(f'lines_flatmap.collect() : {lines_flatmap.collect()}')
+print()
+print(lines)
+print(lines.count(), lines.collect())
+print()
+print(lines_map)
+print(lines_map.count(), lines_map.collect())
+print()
+print(lines_flatmap)
+print(lines_flatmap.count(), lines_flatmap.collect())
+print()
+print(lines_filter)
+print(lines_filter.count(), lines_filter.collect())
+print()
 
-spark.stop()
+sc.stop()
 '''
+
 
 
 '''

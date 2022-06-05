@@ -59,6 +59,10 @@ services:
       - 9000:9000
     environment:
       HTTP_PORT: 9000
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   spark-master-1:
     hostname: spark-master-1
@@ -79,6 +83,10 @@ services:
       - SPARK_LOG_DIR=/home/spark/logs
       - SPARK_LOG_MAX_FILES=5
       - SPARK_PID_DIR=/tmp
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   spark-master-2:
     hostname: spark-master-2
@@ -98,6 +106,11 @@ services:
       - SPARK_LOG_DIR=/home/spark/logs
       - SPARK_LOG_MAX_FILES=5
       - SPARK_PID_DIR=/tmp
+    depends_on:
+      - spark-master-1
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   spark-slave-1:
     hostname: spark-slave-1
@@ -125,6 +138,9 @@ services:
     depends_on:
       - spark-master-1
       - spark-master-2
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   spark-slave-2:
     hostname: spark-slave-2
@@ -152,6 +168,9 @@ services:
     depends_on:
       - spark-master-1
       - spark-master-2
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   spark-slave-3:
     hostname: spark-slave-3
@@ -179,6 +198,9 @@ services:
     depends_on:
       - spark-master-1
       - spark-master-2
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   zeppelin:
     hostname: zeppelin
@@ -206,6 +228,9 @@ services:
     depends_on:
       - spark-master-1
       - spark-master-2
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   spark-client:
     hostname: spark-client
@@ -232,3 +257,6 @@ services:
     depends_on:
       - spark-master-1
       - spark-master-2
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3

@@ -60,19 +60,19 @@ services:
     environment:
       HTTP_PORT: 9000
 
-  spark-master:
-    hostname: spark-master
-    container_name: spark-master
-    scale: 1
+  spark-master-1:
+    hostname: spark-master-1
+    container_name: spark-master-1
     image: spark-cluster:0.04
     restart: always
+    scale: 1
     ports:
       - 8081:8080
     stdin_open: true
     tty: true
     environment:
       - SPARK_MODE=master
-      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_HOST=spark-master-1
       - SPARK_MASTER_PORT=7077
       - SPARK_MASTER_WEBUI_PORT=8080
       - SPARK_CONF_DIR=/home/spark/conf
@@ -99,30 +99,32 @@ services:
       - SPARK_LOG_MAX_FILES=5
       - SPARK_PID_DIR=/tmp
 
-  # spark-slave-1:
-  #   hostname: spark-slave-1
-  #   container_name: spark-slave-1
-  #   image: spark-cluster:0.04
-  #   restart: always
-  #   stdin_open: true
-  #   tty: true
-  #   ports:
-  #     - 8091:8081 # 스파크 워커 웹 UI
-  #   environment:
-  #     - SPARK_MODE=slave
-  #     - SPARK_MASTER_HOST=spark-master
-  #     - SPARK_MASTER_PORT=7077
-  #     - SPARK_MASTER_WEBUI_PORT=8080
-  #     - SPARK_WORKER_CORES=4
-  #     - SPARK_WORKER_MEMORY=4g
-  #     - SPARK_WORKER_WEBUI_PORT=8081
-  #     - SPARK_WORKER_PORT=18081
-  #     - SPARK_CONF_DIR=/home/spark/conf
-  #     - SPARK_LOG_DIR=/home/spark/logs
-  #     - SPARK_LOG_MAX_FILES=5
-  #     - SPARK_PID_DIR=/tmp
-  #   depends_on:
-  #     - spark-master
+  spark-slave-1:
+    hostname: spark-slave-1
+    container_name: spark-slave-1
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 8091:8081 # 스파크 워커 웹 UI
+    environment:
+      - SPARK_MODE=slave
+      - SPARK_MASTER_HOST=spark-master-1
+      - SPARK_MASTER_HOST_SUB=spark-master-2
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_PORT_SUB=7077
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=4g
+      - SPARK_WORKER_WEBUI_PORT=8081
+      - SPARK_WORKER_PORT=18081
+      - SPARK_CONF_DIR=/home/spark/conf
+      - SPARK_LOG_DIR=/home/spark/logs
+      - SPARK_LOG_MAX_FILES=5
+      - SPARK_PID_DIR=/tmp
+    depends_on:
+      - spark-master-1
+      - spark-master-2
 
   # spark-slave-2:
   #   hostname: spark-slave-2

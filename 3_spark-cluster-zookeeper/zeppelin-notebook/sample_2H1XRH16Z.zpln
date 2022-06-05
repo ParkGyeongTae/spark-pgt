@@ -1,0 +1,72 @@
+{
+  "paragraphs": [
+    {
+      "text": "sc",
+      "user": "anonymous",
+      "dateUpdated": "2022-05-18 06:10:54.955",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m \u003d org.apache.spark.SparkContext@489e427a\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1650019015041_1250732723",
+      "id": "paragraph_1650019015041_1250732723",
+      "dateCreated": "2022-04-15 10:36:55.041",
+      "dateStarted": "2022-05-18 06:10:55.000",
+      "dateFinished": "2022-05-18 06:11:23.974",
+      "status": "FINISHED"
+    },
+    {
+      "user": "anonymous",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1650019021039_26819898",
+      "id": "paragraph_1650019021039_26819898",
+      "dateCreated": "2022-04-15 10:37:01.039",
+      "status": "READY"
+    }
+  ],
+  "name": "sample",
+  "id": "2H1XRH16Z",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

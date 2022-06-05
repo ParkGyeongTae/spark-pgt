@@ -1,18 +1,40 @@
-
-
 from pyspark.sql import SparkSession
-import time
 
-spark = SparkSession\
-        .builder\
-        .appName("0_save_file")\
-        .getOrCreate()
+spark = SparkSession.builder \
+                    .appName('0_test_rdd') \
+                    .master('spark://spark-master-1:7077,spark-master-2:7077') \
+                    .config('spark.driver.cores', '2') \
+                    .config('spark.driver.memory','2g') \
+                    .config('spark.executor.memory', '2g') \
+                    .config('spark.executor.cores', '2') \
+                    .config('spark.cores.max', '8') \
+                    .getOrCreate()
 
 sc = spark.sparkContext
 
-current = time.time()
+line_1 = 'i love you'
+line_2 = 'you are my friend'
+line_3 = 'my name is park'
 
-print(current)
+lines_upper = sc.parallelize([line_1.upper(), 
+                              line_2.upper(), 
+                              line_3.upper()])
+
+lines_lower = sc.parallelize([line_1.lower(), 
+                              line_2.lower(), 
+                              line_3.lower()])
+
+# print(lines_upper.collect())
+# print(lines_lower.collect())
+print()
+print(lines_upper)
+
+print()
+print(lines_lower)
+
+print()
+
+sc.stop()
 
 # line_1 = 'i love you'
 # line_2 = 'you are my friend'
@@ -29,7 +51,6 @@ print(current)
 # print(f'lines_map.collect()     : {lines_map.collect()}')
 # print(f'lines_flatmap.collect() : {lines_flatmap.collect()}')
 
-spark.stop()
 
 '''
 from pyspark.sql import SparkSession

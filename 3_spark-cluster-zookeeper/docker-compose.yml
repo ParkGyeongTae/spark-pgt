@@ -134,7 +134,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - 8092:8081 # 스파크 워커 웹 UI
+      - 8092:8081
     environment:
       - SPARK_MODE=slave
       - SPARK_MASTER_HOST=spark-master-1
@@ -161,7 +161,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - 8083:8081 # 스파크 워커 웹 UI
+      - 8083:8081
     environment:
       - SPARK_MODE=slave
       - SPARK_MASTER_HOST=spark-master-1
@@ -207,28 +207,28 @@ services:
       - spark-master-1
       - spark-master-2
 
-  # spark-client:
-  #   hostname: spark-client
-  #   container_name: spark-client
-  #   image: spark-cluster:0.04
-  #   restart: always
-  #   stdin_open: true
-  #   tty: true
-  #   ports:
-  #     - 4040:4040
-  #     - 4041:4041
-  #     - 4042:4042
-  #   environment:
-  #     - SPARK_MODE=client
-  #   volumes:
-  #     - type: bind
-  #       source: ./dev/
-  #       target: /home/spark/dev/
-  #       read_only: false
-  #     - type: bind
-  #       source: ./result/
-  #       target: /home/spark/result/
-  #       read_only: false
-    # depends_on:
-    #   - spark-master-1
-    #   - spark-master-2
+  spark-client:
+    hostname: spark-client
+    container_name: spark-client
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 4040:4040
+      - 4041:4041
+      - 4042:4042
+    environment:
+      - SPARK_MODE=client
+    volumes:
+      - type: bind
+        source: ./dev/
+        target: /home/spark/dev/
+        read_only: false
+      - type: bind
+        source: ./result/
+        target: /home/spark/result/
+        read_only: false
+    depends_on:
+      - spark-master-1
+      - spark-master-2

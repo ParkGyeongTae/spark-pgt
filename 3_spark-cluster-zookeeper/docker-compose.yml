@@ -67,7 +67,7 @@ services:
     image: spark-cluster:0.04
     restart: always
     ports:
-      - 8081:8080 # 스파크 웹 UI
+      - 8081:8080
     stdin_open: true
     tty: true
     environment:
@@ -80,24 +80,24 @@ services:
       - SPARK_LOG_MAX_FILES=5
       - SPARK_PID_DIR=/tmp
 
-  # spark-master-2:
-  #   hostname: spark-master-2
-  #   container_name: spark-master-2
-  #   image: spark-cluster:0.04
-  #   restart: always
-  #   ports:
-  #     - 8082:8080 # 스파크 웹 UI
-  #   stdin_open: true
-  #   tty: true
-  #   environment:
-  #     - SPARK_MODE=master
-  #     - SPARK_MASTER_HOST=spark-master
-  #     - SPARK_MASTER_PORT=7077
-  #     - SPARK_MASTER_WEBUI_PORT=8080
-  #     - SPARK_CONF_DIR=/home/spark/conf
-  #     - SPARK_LOG_DIR=/home/spark/logs
-  #     - SPARK_LOG_MAX_FILES=5
-  #     - SPARK_PID_DIR=/tmp
+  spark-master-2:
+    hostname: spark-master-2
+    container_name: spark-master-2
+    image: spark-cluster:0.04
+    restart: always
+    ports:
+      - 8082:8080
+    stdin_open: true
+    tty: true
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master-2
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_WEBUI_PORT=8080
+      - SPARK_CONF_DIR=/home/spark/conf
+      - SPARK_LOG_DIR=/home/spark/logs
+      - SPARK_LOG_MAX_FILES=5
+      - SPARK_PID_DIR=/tmp
 
   # spark-slave-1:
   #   hostname: spark-slave-1

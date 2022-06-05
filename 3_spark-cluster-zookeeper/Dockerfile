@@ -80,6 +80,15 @@ RUN rm -rf /home/zeppelin/bin/*.cmd && \
 
 RUN pip install pyspark
 
+# ha.conf 설정
+RUN set -x \
+    && { \
+    echo 'spark.deploy.recoveryMode=ZOOKEEPER'; \
+    echo 'spark.deploy.zookeeper.url=zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181'; \
+    echo 'spark.deploy.zookeeper.dir=/spark'; \
+    } > /home/spark/ha.conf && \
+    chmod 777 /home/spark/ha.conf
+
 # 컨테이너 실행시 spark 자동실행
 COPY ./entrypoint.sh /usr/local/bin/
 

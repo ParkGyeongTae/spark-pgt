@@ -5,7 +5,6 @@ sleep 1
 # 스파크 마스터 실행
 if [ ${SPARK_MODE} == "master" ]; then
     bash /home/spark/sbin/start-master.sh --properties-file /home/spark/ha.conf
-    # bash /home/spark/sbin/start-master.sh -p ${} --webui-port ${} --properties-file /home/spark/ha.conf
 fi
 
 sleep 1

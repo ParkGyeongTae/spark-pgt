@@ -180,31 +180,32 @@ services:
       - spark-master-1
       - spark-master-2
 
-  # zeppelin:
-  #   hostname: zeppelin
-  #   container_name: zeppelin
-  #   image: spark-cluster:0.04
-  #   restart: always
-  #   stdin_open: true
-  #   tty: true
-  #   ports:
-  #     - 9999:9999
-  #     - 14040:4040
-  #   environment:
-  #     - SPARK_MODE=zeppelin
-  #     - SPARK_MASTER=spark://spark-master:17077
-  #     - ZEPPELIN_PORT=9999
-  #     - ZEPPELIN_ADDR=0.0.0.0
-  #     - ZEPPELIN_LOG_DIR=/home/zeppelin/logs
-  #     - ZEPPELIN_PID_DIR=/home/zeppelin/run
-  #     - SPARK_SUBMIT_OPTIONS=--total-executor-cores 4 --name MyFirstZeppelin
-  #   volumes:
-  #     - type: bind
-  #       source: ./zeppelin-notebook/
-  #       target: /home/zeppelin/notebook/
-  #       read_only: false
-  #   depends_on:
-  #     - spark-master
+  zeppelin:
+    hostname: zeppelin
+    container_name: zeppelin
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 9999:9999
+      - 14040:4040
+    environment:
+      - SPARK_MODE=zeppelin
+      - SPARK_MASTER=spark://spark-master-1:7077,spark-master-2:7077
+      - ZEPPELIN_PORT=9999
+      - ZEPPELIN_ADDR=0.0.0.0
+      - ZEPPELIN_LOG_DIR=/home/zeppelin/logs
+      - ZEPPELIN_PID_DIR=/home/zeppelin/run
+      - SPARK_SUBMIT_OPTIONS=--total-executor-cores 4 --name MyFirstZeppelin
+    volumes:
+      - type: bind
+        source: ./zeppelin-notebook/
+        target: /home/zeppelin/notebook/
+        read_only: false
+    depends_on:
+      - spark-master-1
+      - spark-master-2
 
   # spark-client:
   #   hostname: spark-client
@@ -228,5 +229,6 @@ services:
   #       source: ./result/
   #       target: /home/spark/result/
   #       read_only: false
-  #   depends_on:
-  #     - spark-master
+    # depends_on:
+    #   - spark-master-1
+    #   - spark-master-2

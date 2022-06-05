@@ -107,12 +107,12 @@ services:
   #   stdin_open: true
   #   tty: true
   #   ports:
-  #     - 8081:8081 # 스파크 워커 웹 UI
+  #     - 8091:8081 # 스파크 워커 웹 UI
   #   environment:
   #     - SPARK_MODE=slave
   #     - SPARK_MASTER_HOST=spark-master
-  #     - SPARK_MASTER_PORT=17077
-  #     - SPARK_MASTER_WEBUI_PORT=18080
+  #     - SPARK_MASTER_PORT=7077
+  #     - SPARK_MASTER_WEBUI_PORT=8080
   #     - SPARK_WORKER_CORES=4
   #     - SPARK_WORKER_MEMORY=4g
   #     - SPARK_WORKER_WEBUI_PORT=8081
@@ -132,11 +132,11 @@ services:
   #   stdin_open: true
   #   tty: true
   #   ports:
-  #     - 8082:8081 # 스파크 워커 웹 UI
+  #     - 8092:8081 # 스파크 워커 웹 UI
   #   environment:
   #     - SPARK_MODE=slave
   #     - SPARK_MASTER_HOST=spark-master
-  #     - SPARK_MASTER_PORT=17077
+  #     - SPARK_MASTER_PORT=7077
   #     - SPARK_MASTER_WEBUI_PORT=18080
   #     - SPARK_WORKER_CORES=4
   #     - SPARK_WORKER_MEMORY=4g
@@ -160,8 +160,8 @@ services:
   #     - 8083:8081 # 스파크 워커 웹 UI
   #   environment:
   #     - SPARK_MODE=slave
-  #     - SPARK_MASTER_HOST=spark-master
-  #     - SPARK_MASTER_PORT=17077
+  #     - SPARK_MASTER_HOST=spark-master-2
+  #     - SPARK_MASTER_PORT=7077
   #     - SPARK_MASTER_WEBUI_PORT=18080
   #     - SPARK_WORKER_CORES=4
   #     - SPARK_WORKER_MEMORY=4g

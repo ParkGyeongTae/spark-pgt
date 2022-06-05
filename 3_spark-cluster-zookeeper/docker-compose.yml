@@ -193,6 +193,7 @@ services:
         source: ./result/
         target: /home/spark/result/
         read_only: false
+      - history-data:/home/spark/history
     depends_on:
       - spark-master-1
       - spark-master-2
@@ -211,9 +212,14 @@ services:
       - 19999:18080
     environment:
       - SPARK_MODE=history-server
+    volumes:
+      - history-data:/home/spark/history
     depends_on:
       - spark-master-1
       - spark-master-2
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+
+volumes:
+  history-data:

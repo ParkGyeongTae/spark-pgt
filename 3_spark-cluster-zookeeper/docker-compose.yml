@@ -93,6 +93,7 @@ services:
     container_name: spark-master-2
     image: spark-cluster:0.04
     restart: always
+    scale: 1
     ports:
       - 8082:8080
     stdin_open: true
@@ -112,15 +113,14 @@ services:
       - zookeeper-2
       - zookeeper-3
 
-  spark-slave-1:
-    hostname: spark-slave-1
-    container_name: spark-slave-1
+  spark-slave:
     image: spark-cluster:0.04
     restart: always
     stdin_open: true
     tty: true
+    scale: 3
     ports:
-      - 8091:8081
+      - 8090-8099:8080
     environment:
       - SPARK_MODE=slave
       - SPARK_MASTER_HOST=spark-master-1
@@ -128,69 +128,8 @@ services:
       - SPARK_MASTER_PORT=7077
       - SPARK_MASTER_PORT_SUB=7077
       - SPARK_WORKER_CORES=4
-      - SPARK_WORKER_MEMORY=4g
-      - SPARK_WORKER_WEBUI_PORT=8081
-      - SPARK_WORKER_PORT=18081
-      - SPARK_CONF_DIR=/home/spark/conf
-      - SPARK_LOG_DIR=/home/spark/logs
-      - SPARK_LOG_MAX_FILES=5
-      - SPARK_PID_DIR=/tmp
-    depends_on:
-      - spark-master-1
-      - spark-master-2
-      - zookeeper-1
-      - zookeeper-2
-      - zookeeper-3
-
-  spark-slave-2:
-    hostname: spark-slave-2
-    container_name: spark-slave-2
-    image: spark-cluster:0.04
-    restart: always
-    stdin_open: true
-    tty: true
-    ports:
-      - 8092:8081
-    environment:
-      - SPARK_MODE=slave
-      - SPARK_MASTER_HOST=spark-master-1
-      - SPARK_MASTER_HOST_SUB=spark-master-2
-      - SPARK_MASTER_PORT=7077
-      - SPARK_MASTER_PORT_SUB=7077
-      - SPARK_WORKER_CORES=4
-      - SPARK_WORKER_MEMORY=4g
-      - SPARK_WORKER_WEBUI_PORT=8081
-      - SPARK_WORKER_PORT=18081
-      - SPARK_CONF_DIR=/home/spark/conf
-      - SPARK_LOG_DIR=/home/spark/logs
-      - SPARK_LOG_MAX_FILES=5
-      - SPARK_PID_DIR=/tmp
-    depends_on:
-      - spark-master-1
-      - spark-master-2
-      - zookeeper-1
-      - zookeeper-2
-      - zookeeper-3
-
-  spark-slave-3:
-    hostname: spark-slave-3
-    container_name: spark-slave-3
-    image: spark-cluster:0.04
-    restart: always
-    stdin_open: true
-    tty: true
-    ports:
-      - 8083:8081
-    environment:
-      - SPARK_MODE=slave
-      - SPARK_MASTER_HOST=spark-master-1
-      - SPARK_MASTER_HOST_SUB=spark-master-2
-      - SPARK_MASTER_PORT=7077
-      - SPARK_MASTER_PORT_SUB=7077
-      - SPARK_WORKER_CORES=4
-      - SPARK_WORKER_MEMORY=4g
-      - SPARK_WORKER_WEBUI_PORT=8081
-      - SPARK_WORKER_PORT=18081
+      - SPARK_WORKER_MEMORY=6g
+      - SPARK_WORKER_WEBUI_PORT=8080
       - SPARK_CONF_DIR=/home/spark/conf
       - SPARK_LOG_DIR=/home/spark/logs
       - SPARK_LOG_MAX_FILES=5
@@ -254,6 +193,24 @@ services:
         source: ./result/
         target: /home/spark/result/
         read_only: false
+    depends_on:
+      - spark-master-1
+      - spark-master-2
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  spark-history-server:
+    hostname: spark-history-server
+    container_name: spark-history-server
+    image: spark-cluster:0.04
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 19999:18080
+    environment:
+      - SPARK_MODE=history-server
     depends_on:
       - spark-master-1
       - spark-master-2

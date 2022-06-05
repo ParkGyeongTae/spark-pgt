@@ -86,8 +86,26 @@ RUN set -x \
     echo 'spark.deploy.recoveryMode=ZOOKEEPER'; \
     echo 'spark.deploy.zookeeper.url=zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181'; \
     echo 'spark.deploy.zookeeper.dir=/spark'; \
-    } > /home/spark/ha.conf && \
-    chmod 777 /home/spark/ha.conf
+    } > /home/spark/conf/ha.conf && \
+    chmod 777 /home/spark/conf/ha.conf
+
+# history server 설정
+RUN set -x \
+    && { \
+    echo 'spark.master                       spark://spark-master-1:7077,spark-master-2:7077'; \
+    echo 'spark.eventLog.enabled             true'; \
+    echo 'spark.eventLog.dir                 file:/home/spark/history'; \
+    echo 'spark.history.fs.logDirectory      file:/home/spark/history'; \
+    echo 'spark.history.provider             org.apache.spark.deploy.history.FsHistoryProvider'; \
+    echo 'spark.history.ui.port	             18080'; \
+    echo 'spark.history.fs.cleaner.interval  1d'; \
+    echo 'spark.history.fs.cleaner.maxAge    7d'; \
+    } > /home/spark/conf/spark-defaults.conf && \
+    chmod 777 /home/spark/conf/spark-defaults.conf && \
+    mkdir /home/spark/history && \
+    chmod -R 777 /home/spark/history
+    # mkdir /tmp/spark-events && \
+    # chmod -R 777 /tmp/spark-events
 
 # 컨테이너 실행시 spark 자동실행
 COPY ./entrypoint.sh /usr/local/bin/

@@ -21,11 +21,11 @@ WORKDIR /home
 # jdk
 RUN apt-get install openjdk-8-jdk -y
 
-# spark-3.2.1-bin-hadoop3.2
-RUN wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz && \
-    tar -xvf spark-3.2.1-bin-hadoop3.2.tgz && \
-    mv spark-3.2.1-bin-hadoop3.2 spark && \
-    rm -rf spark-3.2.1-bin-hadoop3.2.tgz
+# spark-3.2.2-bin-hadoop3.2
+RUN wget https://dlcdn.apache.org/spark/spark-3.2.2/spark-3.2.2-bin-hadoop3.2.tgz && \
+    tar -xvf spark-3.2.2-bin-hadoop3.2.tgz && \
+    mv spark-3.2.2-bin-hadoop3.2 spark && \
+    rm -rf spark-3.2.2-bin-hadoop3.2.tgz
 
 # python 3.8.0
 RUN apt-get install python3.8 -y && \

@@ -120,7 +120,7 @@ services:
     tty: true
     scale: 3
     ports:
-      - 8090-8099:8080
+      - 19000-19100:8080
     environment:
       - SPARK_MODE=slave
       - SPARK_MASTER_HOST=spark-master-1

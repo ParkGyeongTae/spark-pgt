@@ -22,7 +22,8 @@ WORKDIR /home
 RUN apt-get install openjdk-8-jdk -y
 
 # spark-3.2.2-bin-hadoop3.2
-RUN wget https://dlcdn.apache.org/spark/spark-3.2.2/spark-3.2.2-bin-hadoop3.2.tgz && \
+
+RUN wget https://archive.apache.org/dist/spark/spark-3.2.2/spark-3.2.2-bin-hadoop3.2.tgz && \
     tar -xvf spark-3.2.2-bin-hadoop3.2.tgz && \
     mv spark-3.2.2-bin-hadoop3.2 spark && \
     rm -rf spark-3.2.2-bin-hadoop3.2.tgz
@@ -79,8 +80,21 @@ RUN rm -rf /home/zeppelin/bin/*.cmd && \
     mkdir /home/zeppelin/notebook
 
 RUN pip install pyspark
+RUN pip install jupyter-core==4.6.3
+RUN pip install jupyter-client==6.1.7
+RUN pip install grpcio==1.30.0
+RUN pip install protobuf==3.10.0
+RUN pip install ipython==7.16.1
+RUN pip install ipykernel==5.3.4
+RUN pip install ipython-genutils==0.2.0
 
 # 컨테이너 실행시 spark 자동실행
 COPY ./entrypoint.sh /usr/local/bin/
+
+
+# pip install jupyter-server==1.10.2
+# pip install protobuf==4.21.11
+# pip install protobuf==3.20.1
+# pip install grpcio==1.51.1
 
 ENTRYPOINT ["entrypoint.sh"]

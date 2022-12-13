@@ -1,19 +1,19 @@
 {
   "paragraphs": [
     {
-      "text": "sc",
+      "text": "%python\n\nprint(\u0027aa\u0027)",
       "user": "anonymous",
-      "dateUpdated": "2022-05-18 06:10:54.955",
+      "dateUpdated": "2022-12-13 15:51:03.750",
       "progress": 0,
       "config": {
         "editorSetting": {
-          "language": "scala",
+          "language": "python",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
         "colWidth": 12.0,
-        "editorMode": "ace/mode/scala",
+        "editorMode": "ace/mode/python",
         "fontSize": 9.0,
         "results": {},
         "enabled": true
@@ -27,7 +27,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m \u003d org.apache.spark.SparkContext@489e427a\n"
+            "data": "aa\n"
           }
         ]
       },
@@ -37,9 +37,89 @@
       "jobName": "paragraph_1650019015041_1250732723",
       "id": "paragraph_1650019015041_1250732723",
       "dateCreated": "2022-04-15 10:36:55.041",
-      "dateStarted": "2022-05-18 06:10:55.000",
-      "dateFinished": "2022-05-18 06:11:23.974",
+      "dateStarted": "2022-12-13 15:51:03.770",
+      "dateFinished": "2022-12-13 15:51:03.787",
       "status": "FINISHED"
+    },
+    {
+      "text": "%python.ipython\n\n!pip list",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-13 15:57:04.080",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Package          Version\r\n---------------- --------\r\nasn1crypto       0.24.0\r\nbackcall         0.2.0\r\ncryptography     2.1.4\r\ndecorator        5.1.1\r\ngrpcio           1.30.0\r\nidna             2.6\r\nipykernel        5.3.4\r\nipython          7.16.1\r\nipython-genutils 0.2.0\r\njedi             0.18.2\r\njupyter-client   6.1.7\r\njupyter-core     4.6.3\r\nkeyring          10.6.0\r\nkeyrings.alt     3.0\r\nparso            0.8.3\r\npexpect          4.8.0\r\npickleshare      0.7.5\r\npip              22.3.1\r\nprompt-toolkit   3.0.36\r\nprotobuf         3.10.0\r\nptyprocess       0.7.0\r\npy4j             0.10.9.5\r\npycrypto         2.6.1\r\nPygments         2.13.0\r\nPyGObject        3.26.1\r\npyspark          3.3.1\r\npython-dateutil  2.8.2\r\npyxdg            0.25\r\npyzmq            24.0.1\r\nSecretStorage    2.3.1\r\nsetuptools       39.0.1\r\nsix              1.11.0\r\ntornado          6.2\r\ntraitlets        5.7.1\r\nwcwidth          0.2.5\r\nwheel            0.30.0\r\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1650019021039_26819898",
+      "id": "paragraph_1650019021039_26819898",
+      "dateCreated": "2022-04-15 10:37:01.039",
+      "dateStarted": "2022-12-13 15:57:04.197",
+      "dateFinished": "2022-12-13 15:57:07.326",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%iPython\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-13 15:32:57.733",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Interpreter iPython not found"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1670930132994_1639353572",
+      "id": "paragraph_1670930132994_1639353572",
+      "dateCreated": "2022-12-13 11:15:32.995",
+      "status": "ERROR"
     },
     {
       "user": "anonymous",
@@ -52,9 +132,9 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1650019021039_26819898",
-      "id": "paragraph_1650019021039_26819898",
-      "dateCreated": "2022-04-15 10:37:01.039",
+      "jobName": "paragraph_1670945570832_404135876",
+      "id": "paragraph_1670945570832_404135876",
+      "dateCreated": "2022-12-13 15:32:50.832",
       "status": "READY"
     }
   ],
